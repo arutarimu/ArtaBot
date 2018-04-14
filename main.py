@@ -6,7 +6,9 @@ import subprocess
 Client = discord.Client()
 bot_prefix = "!"
 bot = commands.Bot(command_prefix=bot_prefix)
-
+file_o  = open("discord_token.txt", "r")
+bot_token = file_o.readline()
+file_o.close()
 
 extensions = [
     "cmd.common"
@@ -33,7 +35,7 @@ def main():
             bot.load_extension(ext)
         except Exception as e:
             print("Failed to load Extension : {}\n {}: {}".format(ext, type(e).__name__, e))
-    bot.run("MzkxNDc0ODg3OTIwOTc1ODcy.DRZNQQ.rIlFzS-nOuevwMr64PE5mqsPgn4")
+    bot.run(bot_token)
 
 
 if __name__ == '__main__':

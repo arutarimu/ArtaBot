@@ -4,9 +4,7 @@ from discord.ext import commands
 Client = discord.Client()
 bot_prefix = "!"
 bot = commands.Bot(command_prefix=bot_prefix)
-file_o  = open("discord_token.txt", "r")
-bot_token = file_o.readline()
-file_o.close()
+BOT_TOKEN = ""
 
 extensions = [
     "cmd.common",
@@ -42,7 +40,7 @@ def main():
             bot.load_extension(ext)
         except Exception as e:
             print("Failed to load Extension : {}\n {}: {}".format(ext, type(e).__name__, e))
-    bot.run(bot_token)
+    bot.run(BOT_TOKEN)
 
 
 if __name__ == '__main__':

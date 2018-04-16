@@ -40,7 +40,7 @@ def main():
             bot.load_extension(ext)
         except Exception as e:
             print("Failed to load Extension : {}\n {}: {}".format(ext, type(e).__name__, e))
-    bot.run(BOT_TOKEN)
+    bot.run(process.env.BOT_TOKEN)
 
 
 if __name__ == '__main__':

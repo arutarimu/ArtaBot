@@ -25,9 +25,8 @@ class Reminder:
             if int(args[1]) > 0:
                 await self.bot.say("I will remind you in {} minutes to do that :ballot_box_with_check:".format(args[1]))
                 await asyncio.sleep(int(args[1])*60)
-                embed = discord.Embed(title="Reminder",
-                                      description="Beep Boop, this is a reminder you set earlier :timer:"
-                                                  "\n\n{}".format(message),
+                embed = discord.Embed(title="Beep Boop, this is a reminder you set earlier :timer:",
+                                      description=message,
                                       colour=discord.Colour.green())
                 await self.bot.send_message(string.message.author, embed=embed)
             else:

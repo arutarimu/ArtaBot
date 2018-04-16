@@ -1,7 +1,5 @@
 import discord
 from discord.ext import commands
-import sys
-import subprocess
 
 Client = discord.Client()
 bot_prefix = "!"
@@ -11,7 +9,8 @@ bot_token = file_o.readline()
 file_o.close()
 
 extensions = [
-    "cmd.common"
+    "cmd.common",
+    "cmd.reminder"
 ]
 
 

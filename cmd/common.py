@@ -35,6 +35,14 @@ class Common:
             embed.set_image(url=user_name.message.author.avatar_url)
             await self.bot.say(embed=embed)
 
+    @commands.command(pass_context=True)
+    async def dm(self, string):
+        args = string.message.content.split(" ")
+        message = " "
+        for i in range(1, len(args)):
+            message += args[i] + " "
+        await self.bot.send_message(string.message.author, message)
+
 
 def setup(bot):
     bot.add_cog(Common(bot))

@@ -36,6 +36,7 @@ class ArtaBot:
     async def shutdown(self):
         await self.bot.say("Good bye.")
         await self.bot.logout()
+        await self.bot.close()
 
     @commands.command(pass_context=True)
     async def restart(self):
@@ -51,6 +52,12 @@ class ArtaBot:
             await self.bot.say("User name for {} has been reset.".format(user))
         except discord.Forbidden:
             await self.bot.say("You don't have the permission!")
+
+    async def load_extension(self, name):
+        self.bot.load_extension(name)
+
+    async def unload_extension(self, name):
+        self.bot.unload_extension(name)
 
 
 def setup(bot):

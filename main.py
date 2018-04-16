@@ -10,7 +10,8 @@ file_o.close()
 
 extensions = [
     "cmd.common",
-    "cmd.reminder"
+    "cmd.reminder",
+    "cmd.mirror"
 ]
 
 
@@ -20,6 +21,13 @@ async def on_ready():
     print("Name: {}".format(bot.user.name))
     print("ID: {}".format(bot.user.id))
     await bot.change_presence(game=discord.Game(name='with Arta'))
+
+
+@bot.event
+async def on_message(message):
+    if message.author.bot:
+        return
+    await bot.process_commands(message)
 
 
 @bot.event

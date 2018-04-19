@@ -10,6 +10,11 @@ class Wiki:
     async def wiki(self, ctx):
         string = ctx.message.content.split(" ")
         string.pop(0)
+        if len(string) == 0:
+            error_embed = discord.Embed(title="Command Help",
+                                        description="!remind minutes message",
+                                        colour=discord.Colour.purple())
+            await self.bot.say(embed=error_embed)
         message = ""
         for i in range(0, len(string)):
             message += string[0]

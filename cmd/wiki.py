@@ -19,7 +19,7 @@ class Wiki:
             message = ""
             for i in range(0, len(string)):
                 message += string[0]
-            embed = discord.Embed(url="https://en.wikipedia.org/wiki/{}".format(message))
+            embed = discord.Embed(url="https://en.wikipedia.org/wiki/"+message)
             await self.bot.say(embed=embed)
 
 

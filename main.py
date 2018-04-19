@@ -9,7 +9,8 @@ bot = commands.Bot(command_prefix=bot_prefix)
 extensions = [
     "cmd.common",
     "cmd.reminder",
-    "cmd.mirror"
+    "cmd.mirror",
+    "cmd.wiki"
 ]
 
 

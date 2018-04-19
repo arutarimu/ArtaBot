@@ -8,7 +8,12 @@ class Wiki:
 
     @commands.command(pass_context=True)
     async def wiki(self, ctx):
-        embed = discord.Embed(url="https://en.wikipedia.org/wiki/{}".format(ctx))
+        string = ctx.message.content.split(" ")
+        string.pop(0)
+        message = ""
+        for i in range(0, len(string)):
+            message += string[0]
+        embed = discord.Embed(url="https://en.wikipedia.org/wiki/{}".format(message))
         await self.bot.say(embed=embed)
 
 

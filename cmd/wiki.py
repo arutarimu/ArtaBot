@@ -15,11 +15,12 @@ class Wiki:
                                         description="!remind minutes message",
                                         colour=discord.Colour.purple())
             await self.bot.say(embed=error_embed)
-        message = ""
-        for i in range(0, len(string)):
-            message += string[0]
-        embed = discord.Embed(url="https://en.wikipedia.org/wiki/{}".format(message))
-        await self.bot.say(embed=embed)
+        else:
+            message = ""
+            for i in range(0, len(string)):
+                message += string[0]
+            embed = discord.Embed(url="https://en.wikipedia.org/wiki/{}".format(message))
+            await self.bot.say(embed=embed)
 
 
 def setup(bot):

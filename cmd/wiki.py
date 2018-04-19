@@ -12,7 +12,7 @@ class Wiki:
         string.pop(0)
         if len(string) == 0:
             error_embed = discord.Embed(title="Command Help",
-                                        description="!remind minutes message",
+                                        description="!wiki word",
                                         colour=discord.Colour.purple())
             await self.bot.say(embed=error_embed)
         else:

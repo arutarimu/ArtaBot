@@ -1,4 +1,5 @@
 import discord
+from util import exception_handler
 from discord.ext import commands
 
 
@@ -27,10 +28,7 @@ class Mirror:
             source = args[1]
             destination = args[2]
             if len(args) != 3:
-                error_embed = discord.Embed(title="Command Help",
-                                            description="!map source_id destination_id",
-                                            colour=discord.Colour.purple())
-                await self.bot.say(embed=error_embed)
+                await self.bot.say(embed=exception_handler.help_handler("!map source_id destination_id"))
             elif source == destination:
                 return
             source_id = self.bot.get_channel(source)
@@ -45,35 +43,23 @@ class Mirror:
                                           colour=discord.Colour.green())
                 await self.bot.say(embed=map_embed)
             else:
-                error_embed = discord.Embed(title="Error Message",
-                                            description="Invalid ID's.",
-                                            colour=discord.Colour.red())
-                await self.bot.say(embed=error_embed)
+                await self.bot.say(embed=exception_handler.error_handler("Invalid ID's."))
         except IndexError:
-            error_embed = discord.Embed(title="Command Help",
-                                        description="!map source_id destination_id",
-                                        colour=discord.Colour.purple())
-            await self.bot.say(embed=error_embed)
+            await self.bot.say(embed=exception_handler.help_handler("!map source_id destination_id"))
 
     @commands.command(pass_context=True)
     async def unmap(self, string):
         args = string.message.content.split(" ")
         source = args[1]
         if len(args) != 2:
-            error_embed = discord.Embed(title="Command Help",
-                                        description="!unmap source_id",
-                                        colour=discord.Colour.purple())
-            await self.bot.say(embed=error_embed)
+            await self.bot.say(embed=exception_handler.help_handler("!unmap source_id"))
         try:
             self.mapping.pop(source)
             unmap_embed = discord.Embed(title="Unmapping Channels",
                                         description="Unmapped {}.".format(source))
             await self.bot.say(embed=unmap_embed)
         except KeyError:
-            error_embed = discord.Embed(title="Error Message",
-                                        description="{} is not mapped yet.".format(source),
-                                        colour=discord.Colour.red())
-            await self.bot.say(embed=error_embed)
+            await self.bot.say(embed=exception_handler.help_handler("{} is not mapped yet.".format(source)))
 
 
 def setup(bot):

@@ -1,6 +1,7 @@
 import discord
 import wikipedia
 from discord.ext import commands
+from util import exception_handler
 
 
 def replace_char(string):
@@ -20,11 +21,7 @@ class Wiki:
         string = ctx.message.content.split(" ")
         string.pop(0)
         if len(string) == 0:
-            help_embed = discord.Embed(title="Command Help",
-                                       description="!wiki word\n"
-                                             "This command only works in English at the moment!",
-                                       colour=discord.Colour.purple())
-            await self.bot.say(embed=help_embed)
+            await self.bot.say(embed=exception_handler.help_handler("!wiki word\nThis command only works in English at the moment!"))
         else:
             message = ""
             for i in range(0, len(string)):
@@ -44,15 +41,9 @@ class Wiki:
                 string = ""
                 for i in range(0, 20):
                     string += "* " + e.options[i] + '\n'
-                exception_embed = discord.Embed(title="Disambiguation. Try to be more specific!",
-                                                description=string,
-                                                colour=discord.Colour.red())
-                await self.bot.say(embed=exception_embed)
+                await self.bot.say(embed=exception_handler.error_handler("Disambiguation. Try to be more specific!"))
             except wikipedia.PageError:
-                error_embed = discord.Embed(title="Error",
-                                            description="The page does not exist.",
-                                            colour=discord.Colour.red())
-                await self.bot.say(embed=error_embed)
+                await self.bot.say(embed=exception_handler.error_handler("The page does not exist."))
 
 
 def setup(bot):

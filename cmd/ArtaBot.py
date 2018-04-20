@@ -2,6 +2,7 @@ import discord
 import sys
 import subprocess
 from discord.ext import commands
+from util import exception_handler
 
 
 class ArtaBot:
@@ -28,13 +29,13 @@ class ArtaBot:
             await self.bot.change_nickname(user, nickname)
             await self.bot.say("User {}'s nickname has been change to {} . ".format(user.name, nickname))
         except discord.Forbidden:
-            await self.bot.say("You don't have the permission!")
+            await self.bot.say(embed=exception_handler.error_handler("You don't have the permission"))
         except IndexError:
-            await self.bot.say("You must provide the nickname to set!")
+            await self.bot.say(embed=exception_handler.help_handler("!set_nickname user_mention nickname"))
 
     @commands.command(pass_context=True)
     async def shutdown(self):
-        await self.bot.say("Good bye.")
+        await self.bot.say(":wave: ")
         await self.bot.logout()
         await self.bot.close()
 
@@ -47,11 +48,14 @@ class ArtaBot:
     @commands.command(pass_context=True)
     async def reset_name(self, ctx):
         try:
-            user = ctx.message.mentions[0]
-            await self.bot.change_nickname(user, None)
-            await self.bot.say("User name for {} has been reset.".format(user))
+            if len(ctx.message.content.split()) == 1:
+                await self.bot.say(embed=exception_handler.help_handler("!reset_name user_mention"))
+            else:
+                user = ctx.message.mentions[0]
+                await self.bot.change_nickname(user, None)
+                await self.bot.say("User name for {} has been reset.".format(user))
         except discord.Forbidden:
-            await self.bot.say("You don't have the permission!")
+            await self.bot.say(embed=exception_handler.error_handler("You don't have the permission."))
 
     async def load_extension(self, name):
         self.bot.load_extension(name)

@@ -28,7 +28,7 @@ class Mirror:
             source = args[1]
             destination = args[2]
             if len(args) != 3:
-                await self.bot.say(embed=exception_handler.help_handler("!map source_id destination_id"))
+                await self.bot.say(embed=exception_handler.help("!map source_id destination_id"))
             elif source == destination:
                 return
             source_id = self.bot.get_channel(source)
@@ -43,23 +43,23 @@ class Mirror:
                                           colour=discord.Colour.green())
                 await self.bot.say(embed=map_embed)
             else:
-                await self.bot.say(embed=exception_handler.error_handler("Invalid ID's."))
+                await self.bot.say(embed=exception_handler.error("Invalid ID's."))
         except IndexError:
-            await self.bot.say(embed=exception_handler.help_handler("!map source_id destination_id"))
+            await self.bot.say(embed=exception_handler.help("!map source_id destination_id"))
 
     @commands.command(pass_context=True)
     async def unmap(self, string):
         args = string.message.content.split(" ")
         source = args[1]
         if len(args) != 2:
-            await self.bot.say(embed=exception_handler.help_handler("!unmap source_id"))
+            await self.bot.say(embed=exception_handler.help("!unmap source_id"))
         try:
             self.mapping.pop(source)
             unmap_embed = discord.Embed(title="Unmapping Channels",
                                         description="Unmapped {}.".format(source))
             await self.bot.say(embed=unmap_embed)
         except KeyError:
-            await self.bot.say(embed=exception_handler.help_handler("{} is not mapped yet.".format(source)))
+            await self.bot.say(embed=exception_handler.help("{} is not mapped yet.".format(source)))
 
 
 def setup(bot):

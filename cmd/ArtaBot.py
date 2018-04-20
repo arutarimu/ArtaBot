@@ -29,9 +29,9 @@ class ArtaBot:
             await self.bot.change_nickname(user, nickname)
             await self.bot.say("User {}'s nickname has been change to {} . ".format(user.name, nickname))
         except discord.Forbidden:
-            await self.bot.say(embed=exception_handler.error_handler("You don't have the permission"))
+            await self.bot.say(embed=exception_handler.error("You don't have the permission"))
         except IndexError:
-            await self.bot.say(embed=exception_handler.help_handler("!set_nickname user_mention nickname"))
+            await self.bot.say(embed=exception_handler.help("!set_nickname user_mention nickname"))
 
     @commands.command(pass_context=True)
     async def shutdown(self):
@@ -49,13 +49,13 @@ class ArtaBot:
     async def reset_name(self, ctx):
         try:
             if len(ctx.message.content.split()) == 1:
-                await self.bot.say(embed=exception_handler.help_handler("!reset_name user_mention"))
+                await self.bot.say(embed=exception_handler.help("!reset_name user_mention"))
             else:
                 user = ctx.message.mentions[0]
                 await self.bot.change_nickname(user, None)
                 await self.bot.say("User name for {} has been reset.".format(user))
         except discord.Forbidden:
-            await self.bot.say(embed=exception_handler.error_handler("You don't have the permission."))
+            await self.bot.say(embed=exception_handler.error("You don't have the permission."))
 
     async def load_extension(self, name):
         self.bot.load_extension(name)

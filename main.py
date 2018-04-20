@@ -1,5 +1,6 @@
 import discord
 import os
+import ctypes.util
 from discord.ext import commands
 
 Client = discord.Client()
@@ -10,7 +11,8 @@ extensions = [
     "cmd.common",
     "cmd.reminder",
     "cmd.mirror",
-    "cmd.wiki"]
+    "cmd.wiki",
+    "cmd.music"]
 
 
 @bot.event
@@ -34,13 +36,15 @@ async def on_resume():
 
 
 def main():
+    ctypes.util.find_library("libopus")
     bot.load_extension('cmd.ArtaBot')
     for ext in extensions:
         try:
             bot.load_extension(ext)
         except Exception as e:
             print("Failed to load Extension : {}\n {}: {}".format(ext, type(e).__name__, e))
-    bot.run(os.environ.get('BOT_TOKEN'))
+    bot.run("NDM2NjcyODE3MTgzMDY0MDY0.DbrqHA.8z9uI5SaTJm6u9AQWzNRtDKBF3E")
+    os.environ()
 
 
 if __name__ == '__main__':

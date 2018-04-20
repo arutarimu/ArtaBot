@@ -18,7 +18,7 @@ class Reminder:
         for i in range(2, len(args)):
             message += args[i] + " "
         if len(args) < 3:
-            await self.bot.say(embed=exception_handler.help_handler("!remind minutes message"))
+            await self.bot.say(embed=exception_handler.help("!remind minutes message"))
         else:
             if int(args[1]) > 0:
                 await self.bot.say("I will remind you in {} minutes to do that :ballot_box_with_check:".format(args[1]))
@@ -28,7 +28,7 @@ class Reminder:
                                       colour=discord.Colour.green())
                 await self.bot.send_message(string.message.author, embed=embed)
             else:
-                await self.bot.say(embed=exception_handler.error_handler("Invalid Minutes"))
+                await self.bot.say(embed=exception_handler.error("Invalid Minutes"))
 
 
 def setup(bot):

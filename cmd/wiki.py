@@ -21,7 +21,7 @@ class Wiki:
         string = ctx.message.content.split(" ")
         string.pop(0)
         if len(string) == 0:
-            await self.bot.say(embed=exception_handler.help_handler("!wiki word\nThis command only works in English at the moment!"))
+            await self.bot.say(embed=exception_handler.help("!wiki word\nThis command only works in English at the moment!"))
         else:
             message = ""
             for i in range(0, len(string)):
@@ -41,9 +41,9 @@ class Wiki:
                 string = ""
                 for i in range(0, 20):
                     string += "* " + e.options[i] + '\n'
-                await self.bot.say(embed=exception_handler.error_handler("Disambiguation. Try to be more specific!\n"+string))
+                await self.bot.say(embed=exception_handler.error("Disambiguation. Try to be more specific!\n"+string))
             except wikipedia.PageError:
-                await self.bot.say(embed=exception_handler.error_handler("The page does not exist."))
+                await self.bot.say(embed=exception_handler.error("The page does not exist."))
 
 
 def setup(bot):

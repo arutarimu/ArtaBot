@@ -7,10 +7,6 @@ if not discord.opus.is_loaded():
     discord.opus.load_opus('opus')
 
 
-def __init__(self, bot):
-    self.bot = bot
-
-
 class VoiceEntry:
     def __init__(self, message, player):
         self.requester = message.author
@@ -162,4 +158,3 @@ class Music:
 
 def setup(bot):
     bot.add_cog(Music(bot))
-    print('Music is loaded')

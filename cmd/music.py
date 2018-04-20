@@ -1,10 +1,11 @@
 import asyncio
 import discord
 from discord.ext import commands
+import ctypes.util
 from util import exception_handler
 
 if not discord.opus.is_loaded():
-    discord.opus.load_opus('opus')
+    ctypes.util.find_library("libopus")
 
 
 class VoiceEntry:

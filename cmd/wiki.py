@@ -41,7 +41,7 @@ class Wiki:
                 string = ""
                 for i in range(0, 20):
                     string += "* " + e.options[i] + '\n'
-                await self.bot.say(embed=exception_handler.error_handler("Disambiguation. Try to be more specific!"+string))
+                await self.bot.say(embed=exception_handler.error_handler("Disambiguation. Try to be more specific!\n"+string))
             except wikipedia.PageError:
                 await self.bot.say(embed=exception_handler.error_handler("The page does not exist."))
 

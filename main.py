@@ -1,11 +1,11 @@
 import discord
 import os
+from util import opus_loader
 from discord.ext import commands
 
 Client = discord.Client()
 bot_prefix = "!"
 bot = commands.Bot(command_prefix=bot_prefix)
-
 extensions = [
     "cmd.common",
     "cmd.reminder",
@@ -36,6 +36,7 @@ async def on_resume():
 
 
 def main():
+    opus_loader.load_opus_lib()
     bot.load_extension('cmd.ArtaBot')
     for ext in extensions:
         try:

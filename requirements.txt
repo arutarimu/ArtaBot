@@ -1,2 +1,2 @@
 discord.py==0.16.11
-wikipedia.py==1.4.0
+wikipedia==1.4.0

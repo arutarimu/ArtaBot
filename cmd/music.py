@@ -2,8 +2,9 @@ import asyncio
 import discord
 from discord.ext import commands
 from util import exception_handler
+from util.opus_loader import load_opus_lib
 
-discord.opus.load_opus('opus')
+load_opus_lib()
 
 class VoiceEntry:
     def __init__(self, message, player):

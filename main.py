@@ -1,10 +1,8 @@
 import discord
 import os
-from util.opus_loader import load_opus_lib
 from discord.ext import commands
 
 Client = discord.Client()
-load_opus_lib()
 bot_prefix = "!"
 bot = commands.Bot(command_prefix=bot_prefix)
 

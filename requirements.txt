@@ -1,7 +1,8 @@
 discord.py==0.16.11
 wikipedia==1.4.0
-discord.py[voice] ~= 0.16.0
+discord.py[voice]~=0.16.0
 pip
 youtube_dl
 colorlog
 PyNaCl~=1.2.1
+opuslib~=3.0.1

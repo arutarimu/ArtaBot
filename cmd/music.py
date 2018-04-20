@@ -3,6 +3,7 @@ import discord
 from discord.ext import commands
 from util import exception_handler
 
+discord.opus.load_opus('opus')
 
 class VoiceEntry:
     def __init__(self, message, player):
@@ -51,11 +52,9 @@ class VoiceState:
 
 
 class Music:
-    def __init__(self, bot, opus="opus"):
+    def __init__(self, bot):
         self.bot = bot
         self.voice_states = {}
-        self.opus_library = opus
-        discord.opus.load_opus(self.opus_library)
 
     def get_voice_state(self, server):
         state = self.voice_states.get(server.id)

@@ -6,3 +6,4 @@ youtube_dl
 colorlog
 PyNaCl~=1.2.1
 opuslib~=3.0.1
+libopus0

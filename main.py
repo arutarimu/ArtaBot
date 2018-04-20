@@ -36,7 +36,6 @@ async def on_resume():
 
 
 def main():
-    opus_loader.load_opus_lib()
     bot.load_extension('cmd.ArtaBot')
     for ext in extensions:
         try:

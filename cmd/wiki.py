@@ -34,7 +34,7 @@ class Wiki:
                 title = wiki_page.title
                 url_title = replace_char(title)
                 url = "https://en.wikipedia.org/wiki/"+url_title
-                description = wiki_page.summary[:1997]+"..."
+                description = wiki_page.summary[:1997]
                 embed = discord.Embed(title=title,
                                       description=description,
                                       url=url,

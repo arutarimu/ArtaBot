@@ -6,6 +6,7 @@ from util import exception_handler
 
 if not discord.opus.is_loaded():
     ctypes.util.find_library("libopus")
+    discord.opus.load_opus('opus')
 
 
 class VoiceEntry:

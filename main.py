@@ -37,8 +37,6 @@ async def on_resume():
 
 
 def main():
-    if not discord.opus.is_loaded():
-        discord.opus.load_opus('opus')
     bot.load_extension('cmd.ArtaBot')
     for ext in extensions:
         try:

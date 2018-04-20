@@ -10,8 +10,7 @@ extensions = [
     "cmd.common",
     "cmd.reminder",
     "cmd.mirror",
-    "cmd.wiki"
-]
+    "cmd.wiki"]
 
 
 @bot.event

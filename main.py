@@ -12,7 +12,8 @@ extensions = [
     "cmd.reminder",
     "cmd.mirror",
     "cmd.wiki",
-    "cmd.music"]
+    "cmd.music"
+]
 
 
 @bot.event

@@ -20,11 +20,11 @@ class Wiki:
         string = ctx.message.content.split(" ")
         string.pop(0)
         if len(string) == 0:
-            error_embed = discord.Embed(title="Command Help",
-                                        description="!wiki word\n"
-                                                    "This command only works in English at the moment!",
-                                        colour=discord.Colour.purple())
-            await self.bot.say(embed=error_embed)
+            help_embed = discord.Embed(title="Command Help",
+                                       description="!wiki word\n"
+                                             "This command only works in English at the moment!",
+                                       colour=discord.Colour.purple())
+            await self.bot.say(embed=help_embed)
         else:
             message = ""
             for i in range(0, len(string)):
@@ -48,6 +48,11 @@ class Wiki:
                                                 description=string,
                                                 colour=discord.Colour.red())
                 await self.bot.say(embed=exception_embed)
+            except wikipedia.PageError:
+                error_embed = discord.Embed(title="Error",
+                                            description="The page does not exist.",
+                                            colour=discord.Colour.red())
+                await self.bot.say(embed=error_embed)
 
 
 def setup(bot):

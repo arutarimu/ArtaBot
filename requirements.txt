@@ -4,3 +4,4 @@ discord.py[voice] ~= 0.16.0
 pip
 youtube_dl
 colorlog
+PyNaCl~=1.2.1

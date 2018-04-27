@@ -38,11 +38,11 @@ The default set of modules are:
 * !wiki [search] : Returns the closest search query it can find on Wikipedia.     
 
 **Music Features**  
-
+/!\ To use the Music Features, you must put ffmpeg.exe into your PATH. /!\
 * !summon : Brings bot to the author's voice channel.  
 * !play [youtube_URL] : Play the URL's music through voice channel.  
 * !stop : Clears the queue, if the queue is already cleared, leave the channel.  
 * !volume [0-100] : Sets the volume from 0 to 100.  
 * !pause  
 * !skip  
-* !resume  
+* !resume

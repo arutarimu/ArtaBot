@@ -6,9 +6,8 @@ The default set of modules are:
 * Mirror the entire text channel to your own channel  
 * Simple and easy Wikipedia search result  
 * Play music in voice chat (YouTube only)   
-* Music Lyrics connected with YouTube videos ***WIP***
 * Stream alerts (Twitch) ***WIP***   
-* And many more to come!!
+* And many more to come!
 
 
 # Commands   

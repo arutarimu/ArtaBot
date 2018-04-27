@@ -14,7 +14,7 @@ The default set of modules are:
 # Commands   
 **Use !help to get a list of all commands in Discord.**  
 
-***Bot User Features***  
+**Bot User Features**  
 * !reset_name : Set your bot's username to its given username.  
 * !set_nickname [@mention] [nickname] : Set a user's nickname. Only usable with right permissions.  
 * !set_status [status] : Set the bot's status to anything.  
@@ -25,17 +25,18 @@ The default set of modules are:
 * !av [@mention] : Returns the mentioned user's avatar. Can be used multiple like !av [@metion1] [@mention2]. If no mention found, returns the message author's avatar.  
 * !dm [message] : Sends a direct message with [message] to the author.  
 * !ping : Returns "Pong!"  
-* !say [message] : Repeats [message] on the same text channel.      
-**Text Channel Mirror Features**  
+* !say [message] : Repeats [message] on the same text channel.    
 
+**Text Channel Mirror Features**  
 * !map [source_ID] [destination_ID] : Fetches every text message sent in [source_ID]'s channel, and forwards them to [destination_ID]'s channel.  
 * !unmap [source_ID] : Removes the mapped channel.     
+
 **Reminder Feature**  
-
 * !remind [minutes] [message] : Sends the author the [message] in [minutes] minutes.     
-**Wiki Feature**  
 
+**Wiki Feature**  
 * !wiki [search] : Returns the closest search query it can find on Wikipedia.     
+
 **Music Features**  
 
 * !summon : Brings bot to the author's voice channel.  

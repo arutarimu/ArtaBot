@@ -1,6 +1,5 @@
 import discord
 import os
-from util import opus_loader
 from discord.ext import commands
 
 Client = discord.Client()
@@ -43,7 +42,6 @@ def main():
         except Exception as e:
             print("Failed to load Extension : {}\n {}: {}".format(ext, type(e).__name__, e))
     bot.run(os.environ.get('BOT_TOKEN'))
-
 
 
 if __name__ == '__main__':

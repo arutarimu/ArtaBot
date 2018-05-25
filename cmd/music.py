@@ -14,7 +14,7 @@ class VoiceEntry:
         self.player = player
 
     def __str__(self):
-        fmt = ' **{0.title}**  requested by *{1.display_name}*'
+        fmt = ' **{0.title}**  requested by __{1.display_name}__'
         return fmt.format(self.player, self.requester)
 
 
@@ -56,6 +56,7 @@ class VoiceState:
 class Music:
     def __init__(self, bot):
         self.bot = bot
+        self.is_paused = False
         self.voice_states = {}
 
     def get_voice_state(self, server):
@@ -76,8 +77,8 @@ class Music:
                 state.audio_player.cancel()
                 if state.voice:
                     self.bot.loop.create_task(state.voice.disconnect())
-            except:
-                pass
+            except Exception as e:
+                print(e)
 
     @commands.command(pass_context=True, no_pm=True)
     async def summon(self, ctx):
@@ -107,8 +108,9 @@ class Music:
                 return
         try:
             player = await state.voice.create_ytdl_player(song, ytdl_options=opts, after=state.toggle_next)
-        except Exception :
+        except Exception as e:
             await self.bot.say(embed=exception_handler.error("Something has happened and could not play music."))
+            print(e)
         else:
             player.volume = 0.6
             entry = VoiceEntry(ctx.message, player)
@@ -123,12 +125,25 @@ class Music:
             player.volume = value / 100
             await self.bot.say(embed=exception_handler.approve("Set the volume to {:.0%}".format(player.volume)))
 
-    @commands.command(pass_context=True, no_pm=True)
-    async def resume(self, ctx):
+    @commands.command(pass_context=True)
+    async def pause(self, ctx):
         state = self.get_voice_state(ctx.message.server)
         if state.is_playing():
             player = state.player
+            player.pause()
+            self.is_paused = True
+        else:
+            await self.bot.say(embed=exception_handler.error("You cannot pause when nothing is playing."))
+
+    @commands.command(pass_context=True, no_pm=True)
+    async def resume(self, ctx):
+        state = self.get_voice_state(ctx.message.server)
+        if state.is_playing() and self.is_paused is True:
+            player = state.player
             player.resume()
+            self.is_paused = False
+        else:
+            await self.bot.say(embed=exception_handler.error("You cannot resume when nothing is paused."))
 
     @commands.command(pass_context=True, no_pm=True)
     async def stop(self, ctx):
@@ -141,15 +156,18 @@ class Music:
             state.audio_player.cancel()
             del self.voice_states[server.id]
             await state.voice.disconnect()
-            await self.bot.say(embed=exception_handler.approve("Cleared the queue."))
-        except:
-            pass
+            await self.bot.say(embed=exception_handler.approve("Music stopped."))
+        except Exception as e:
+            print(e)
 
     @commands.command(pass_context=True, no_pm=True)
     async def skip(self, ctx):
         state = self.get_voice_state(ctx.message.server)
         if not state.is_playing():
             await self.bot.say(embed=exception_handler.error('Not playing any music right now.'))
+            return
+        elif self.is_paused:
+            await self.bot.say(embed=exception_handler.error("You must resume the paused song to skip."))
             return
         state.skip()
         await self.bot.say(embed=exception_handler.approve("Skipped"))

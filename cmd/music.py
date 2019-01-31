@@ -58,6 +58,7 @@ class Music:
         self.bot = bot
         self.is_paused = False
         self.voice_states = {}
+        self.glob_volume = 0.5
 
     def get_voice_state(self, server):
         state = self.voice_states.get(server.id)
@@ -108,11 +109,11 @@ class Music:
                 return
         try:
             player = await state.voice.create_ytdl_player(song, ytdl_options=opts, after=state.toggle_next)
+            player.volume = self.glob_volume
         except Exception as e:
             await self.bot.say(embed=exception_handler.error("Something has happened and could not play music."))
             print(e)
         else:
-            player.volume = 0.6
             entry = VoiceEntry(ctx.message, player)
             await self.bot.say(embed=exception_handler.approve('Enqueued ' + str(entry)))
             await state.songs.put(entry)
@@ -123,6 +124,9 @@ class Music:
         if state.is_playing():
             player = state.player
             player.volume = value / 100
+            self.glob_volume = value / 100
+            
+            
             await self.bot.say(embed=exception_handler.approve("Set the volume to {:.0%}".format(player.volume)))
 
     @commands.command(pass_context=True)

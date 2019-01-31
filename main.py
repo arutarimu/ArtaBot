@@ -27,8 +27,6 @@ async def on_ready():
 async def on_message(message):
     if message.author.bot:
         return
-    elif message.content == "에바":
-        await bot.say("에바")
     await bot.process_commands(message)
 
 

@@ -11,6 +11,7 @@ extensions = [
     "cmd.mirror",
     "cmd.wiki",
     "cmd.music"
+    "cmd.vote"
 ]
 
 

@@ -17,7 +17,7 @@ class Common:
         author = string.message.author
         for i in range(1, (len(new_string))):
             saying = saying + new_string[i] + " "
-        await self.bot.say("{} says : {}").format(author, saying))
+        await self.bot.say("{} says : {}".format(author, saying))
         await self.bot.delete_message(string.message)
 
     @commands.command(pass_context=True)
